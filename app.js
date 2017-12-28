@@ -1,6 +1,7 @@
 const log4js = require('log4js');
 const schedule = require('node-schedule');
 const request = require('request');
+const strava = require('./lib/strava');
  
 log4js.configure({appenders: {
 	filelog: { type: 'file', filename: './log/app.log' },
@@ -13,14 +14,9 @@ categories: {
 
 logger = log4js.getLogger();
 
-var j = schedule.scheduleJob('*/30 * * * * *', function(){
+var j = schedule.scheduleJob('*/10 * * * * *', function(){
   logger.debug('Running scheduler');
   
-  request('http://www.vanbijleveld.nl/about/', (err, res, body) => {
-	 if(err) { logger.error('HTTP error: ' + err.message); return; }
-	 
-	 console.log(body.url);
-	  
-  });
+  strava.getActivities();
   
 });
