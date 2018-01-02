@@ -20,5 +20,5 @@ logger = log4js.getLogger();
 var j = schedule.scheduleJob(process.env.SCHEDULER_STRING, function(){
   logger.debug('Running scheduled task');
   
-  strava.getActivities();
+  strava.syncAllActivities();
 });
