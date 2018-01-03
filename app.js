@@ -38,6 +38,9 @@ app.get('/', function(req, resp){
 });
 
 app.listen(port, function(){
+	strava.syncAllActivities(function(){
+		logger.info('Activity Sync done');
+	});
 	logger.info('Server started on port ' + port);
 });
 
