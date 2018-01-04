@@ -9,7 +9,7 @@ const strava = require('./lib/strava');
 
 var app = express();
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 8080;
 
 log4js.configure({appenders: {
 		filelog: { type: 'file', filename: './log/app.log', maxLogSize: 10485760, backups: 3, compress: true },
@@ -21,7 +21,7 @@ log4js.configure({appenders: {
 	}
 });
 
-logger = log4js.getLogger();
+var logger = log4js.getLogger();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
