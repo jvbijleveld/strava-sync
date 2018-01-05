@@ -12,16 +12,19 @@
     <div class="achievement totalActivities"><div class="amm"><%= rapport.activityCount %> runs</div></div>
 
     <div class="achievement totalDistance"><div class="amm"><%= (rapport.distance/1000).toFixed(1) %></div><div class="unit">km</div></div>
+		
     
-    <div class="achievement totalTime"><div class="unit"></div><div class="amm"><%= (rapport.moving_time/60).toFixed(1) %></div><div class="unit">min</div></div>
+    <div class="achievement totalTime"><div class="unit"></div><div class="amm"><%= format.time(rapport.moving_time) %></div></div>
     
-    <div class="achievement maxSpeed"><div class="unit">Maximaal </div><div class="amm"><%= (rapport.max_speed*3.6).toFixed(1) %></div><div class="unit">km/h</div></div>
+    <div class="achievement maxSpeed"><div class="amm">Maximaal <%= (rapport.max_speed*3.6).toFixed(1) %> km/h</div></div>
     
     <div class="achievement totalKudos"><div class="amm"><%=rapport.kudos%></div><div class="unit">kudos</div></div>
     
+		<div class="achievement averageDistance"><div class="amm">gemiddeld <%= ((rapport.distance/1000)/rapport.activityCount).toFixed(1) %> km per run</div></div>
+		
     <div class="achievement averageKms"><div class="amm">gemiddeld <%=((rapport.distance/1000)/rapport.dayOfYear).toFixed(1) %> km per dag </div></div>
     
-    <div class="achievement averagePerYear"><div class="amm"><%=(((rapport.distance/1000)/rapport.dayOfYear)*365).toFixed(1) %> km per jaar</div></div>
+    <div class="achievement averagePerYear"><div class="amm">dat wordt <%=(((rapport.distance/1000)/rapport.dayOfYear)*365).toFixed(1) %> in 2018</div></div>
   </div>
   
   <div class="lastActivities">

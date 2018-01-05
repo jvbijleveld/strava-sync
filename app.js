@@ -6,6 +6,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const strava = require('./lib/strava');
+const format = require('./lib/format');
 
 var app = express();
 const hostname = process.env.SERVER_HOSTNAME;
@@ -35,6 +36,7 @@ app.get('/', function(req, resp){
 			resp.render('index', {
 				title: 'Strava this Year',
 				rapport: rapport,
+				format: format,
 				activities: activities
 			});
 		});

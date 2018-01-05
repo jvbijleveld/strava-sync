@@ -21,44 +21,50 @@ div div.amm, div div.unit {
 
 .totalActivities {
     font-size: 1.5em;
-    left: 45px;
+    left: 15%;
 }
 
 .totalDistance {
     font-size: 6em;
     font-weight: bold;
-    left: 345px;
+    left: 45%;
 }
 
 .totalTime {
     font-size: 3em;
     font-weight: bold;
-    left: 80px;
+    left: 18%;
     top: 5px;
 }
 
 .maxSpeed {
-    font-size: 2.5em;
+    font-size: 1.5em;
     top: 15px;
-    left: 450px;
+    left: 65%;
 }
 
 .totalKudos {
     font-size: 2.5em;
     top: -5px;
-    left: 145px;
+    left: 35%;
 }
 
 .averageKms {
     font-size: 1.5em;
     top:15px;
-    left: 40px;
+    left: 15%;
 }
 
 .averagePerYear {
-    font-size: 1.5em;
+    font-size: 2em;
     top:1px;
-    left: 360px;
+    left: 50%;
+}
+
+.averageDistance {
+    font-size: 2em;
+    top:1px;
+    left: 55%;
 }
 
 
