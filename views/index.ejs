@@ -1,26 +1,48 @@
 <html>
 <header>
 	<title><%= title %></title>
+	
+	<link rel="stylesheet" type="text/css" href="style.css" />
 </header>
 <body>
-<h1>This year:</h1>
 
-  <ul>
-    <% activities.forEach(function(activity){ %>
-      
-      <li>
-        <h3><%= activity.name %></h3>
-        <p><%= activity.start_date_local %></p>
-        <p><%= (activity.distance/1000).toFixed(1) %> km - 
-          <%= (activity.moving_time/60).toFixed(1) %> min.
-        </p>
-      </li>
-      
-    <% }); %>
+  <div class="report">
+    <h1>Achievements 2018:</h1>
     
-  </ul>
+    <div class="achievement totalActivities"><div class="amm"><%= rapport.activityCount %> runs</div></div>
+
+    <div class="achievement totalDistance"><div class="amm"><%= (rapport.distance/1000).toFixed(1) %></div><div class="unit">km</div></div>
+    
+    <div class="achievement totalTime"><div class="unit"></div><div class="amm"><%= (rapport.moving_time/60).toFixed(1) %></div><div class="unit">min</div></div>
+    
+    <div class="achievement maxSpeed"><div class="unit">Maximaal </div><div class="amm"><%= (rapport.max_speed*3.6).toFixed(1) %></div><div class="unit">km/h</div></div>
+    
+    <div class="achievement totalKudos"><div class="amm"><%=rapport.kudos%></div><div class="unit">kudos</div></div>
+    
+    <div class="achievement averageKms"><div class="amm">gemiddeld <%=((rapport.distance/1000)/rapport.dayOfYear).toFixed(1) %> km per dag </div></div>
+    
+    <div class="achievement averagePerYear"><div class="amm"><%=(((rapport.distance/1000)/rapport.dayOfYear)*365).toFixed(1) %> km per jaar</div></div>
+  </div>
   
+  <div class="lastActivities">
+    <h1>Runs this year:</h1>
+
+    <ul>
+      <% activities.forEach(function(activity){ %>
+        
+        <li>
+          <h3><%= activity.name %></h3>
+          <p><%= activity.start_date_local %></p>
+          <p><%= (activity.distance/1000).toFixed(1) %> km - 
+            <%= (activity.moving_time/60).toFixed(1) %> min.
+          </p>
+        </li>
+        
+      <% }); %>
+      
+    </ul>
   
+  </div>
   
 </body>
 </html>

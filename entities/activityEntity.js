@@ -43,7 +43,7 @@ module.exports = {
   max_speed : {
     type: "float"
   },
-  kudos : {
+  kudos_count : {
     type: "integer"
   }
 };

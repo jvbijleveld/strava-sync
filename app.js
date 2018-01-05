@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const strava = require('./lib/strava');
 
 var app = express();
-const hostname = '127.0.0.1';
+const hostname = process.env.SERVER_HOSTNAME;
 const port = process.env.SERVER_PORT;
 
 log4js.configure({appenders: {
@@ -25,29 +25,35 @@ var logger = log4js.getLogger();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
+app.use(express.static(__dirname + '/assets'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req, resp){
 	strava.fetchCurrentYear(function(activities){
-		resp.render('index', {
-			title: 'Hello world',
-			activities: activities
-		});	
+		strava.builRapport(activities, function(rapport){
+			resp.render('index', {
+				title: 'Strava this Year',
+				rapport: rapport,
+				activities: activities
+			});
+		});
 	});
 });
 
 app.listen(port, function(){
-	strava.syncAllActivities(function(){
-		logger.info('Activity Sync done');
-	});
+	if(process.env.SYNC_ON_STARTUP > 0){
+		strava.syncAllActivities(100, function(){
+			logger.info('Activity Sync done');
+		});
+	}
 	logger.info('Server started on port ' + port);
 });
 
 var j = schedule.scheduleJob(process.env.SCHEDULER_STRING, function(){
   logger.debug('Running scheduled task');
   
-  strava.syncAllActivities(function(){
+  strava.syncAllActivities(25, function(){
 		logger.info('Activity Sync done');
 	});
 });
