@@ -7,6 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const strava = require('./lib/strava');
 const format = require('./lib/format');
+const report = require('./lib/strava_report');
 
 var app = express();
 const hostname = process.env.SERVER_HOSTNAME;
@@ -32,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req, resp){
 	strava.fetchCurrentYear(function(activities){
-		strava.builRapport(activities, function(rapport){
+		report.builRapport(activities, function(rapport){
 			resp.render('index', {
 				title: 'Strava this Year',
 				rapport: rapport,
